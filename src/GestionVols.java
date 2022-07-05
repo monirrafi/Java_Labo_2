@@ -36,11 +36,11 @@ public class GestionVols {
     // Deux methode d'affichage
     public static void afficherEntete(){
         sortie = new JTextArea();
-        sortie.setColumns(50);
+        sortie.setColumns(70);
         sortie.setLineWrap(true);
         sortie.setWrapStyleWord(true);
     
-        sortie.setFont(new Font("courier", Font.PLAIN, 12));
+        sortie.setFont(new Font("courier new", Font.PLAIN, 12));
         sortie.append("\t\tLa liste des "+ Vol.nombreVols+ " vols\n\n");
         sortie.append("Numéro\t" +Vol.paquetterString("destination",30) +"\tdate de départ \tRéservation\n");
     }    
@@ -317,9 +317,11 @@ public class GestionVols {
                 msg += strDate +" doit etre avoir que des nombres\n";
             }else{
                     //msg = "1" + strDate;
+
                 date = new Date(Integer.parseInt(strDate.substring(0,2)), 
                 Integer.parseInt(strDate.substring(3,5)), 
                 Integer.parseInt(strDate.substring(6,10)));
+               // datemsg=date.getMsg();
                 date.compareNow();
                 datemsg=date.getMsg();
                 if(datemsg != ""){

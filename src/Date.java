@@ -6,17 +6,19 @@ public class Date{
     private int jour;
     private int mois;
     private int annee;
+    private String msg="";
 
     static public LocalDate dateActuelle = LocalDate.now();
-    private static String msg="";
+    
 
     Date(int jour, int mois, int annee){
             this.setJour(jour);
             this.setMois(mois);
             this.setAnnee(annee);
+            this.msg="";
     }
     public String getMsg() {
-        return msg;
+        return this.msg;
     }
     public int getJour() {
         return jour;
@@ -34,7 +36,7 @@ public class Date{
         if (1<= jour && jour <= 31) {
                 this.jour = jour;
         }else{
-            msg = jour + " est un jour invalide";
+            this.msg += jour + " est un jour invalide\n";
         } 
     }
     
@@ -42,10 +44,11 @@ public class Date{
         if (1<= mois && mois <= 12) {
             this.mois = mois;
         }else{
-            msg = mois + " est un mois invalide";
+            this.msg += mois + " est un mois invalide\n";
         } 
     }
     public void compareNow(){
+
         String now;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
@@ -55,33 +58,34 @@ public class Date{
         int annee = Integer.parseInt(now.substring(0,4));
         //String  resultat = "apres";
         if (this.annee < annee ) {
-            msg="Cette date est dépassée";
+            this.msg +="Cette date est dépassée\n";
         }
         if(this.annee == annee ){    
             if(this.mois < mois){
-                msg="Cette date est dépassée";
+                this.msg +="Cette date est dépassée\n";
             }
             if(this.mois == mois){
                 if(this.jour <= jour){
-                    msg="Cette date est dépassée";
+                    this.msg +="Cette date est dépassée\n";
                 }
             }
         }
         if((this.mois ==2 && this.jour==29) && 
         ((this.annee%4 != 0 || this.annee%100 == 0) && (this.annee % 400 != 0))){
-            msg = "le mois de fervier a 28 jours seulement";
+            this.msg += "le mois de fervier a 28 jours seulement\n";
         }
         if(this.mois == 2 && this.jour >29){
-            msg = "le mois de fervier a 28 jours seulement";
+            this.msg += "le mois de fervier a 28 jours seulement\n";
         }
 
     }
 
     public String toString() {
-        if(msg.equals("")){
+        
+        if(this.msg.equals("")){
             return jour+"/"+ mois+ "/"+ annee;
         }else{
-            return msg;
+            return getMsg();
 
         }
     }
