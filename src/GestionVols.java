@@ -14,14 +14,23 @@ public class GestionVols {
 
     // Methode retourne index de vol dans la liste s'il existe
     // sinon retourne -1 
-    public static int rechererVol(String volChercher){
+    public static int trouverIndex(String numeroVol) {
         int pos =-1;
         for(Vol vol:listVols){
-            if(vol.getNumeroVol().equals(volChercher)){
+            if(vol.getNumeroVol().equals(numeroVol)){
                 pos=listVols.indexOf(vol);
             } 
         }
         return pos;
+        
+    }
+
+    public static boolean rechererVol(String numeroVol){
+        if(trouverIndex(numeroVol) !=-1){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     // Deux methode d'affichage
@@ -55,7 +64,7 @@ public class GestionVols {
             fich = new BufferedReader(new FileReader(CIE_AIR_RELAX));
             ligne = fich.readLine().trim();
             while(ligne != null){
-                elets = ligne.split("\\s+");
+                elets = ligne.split("\\s+|/");
                 Date date = new Date(Integer.parseInt(elets[2]), Integer.parseInt(elets[3]), 
                                 Integer.parseInt(elets[4]));
                 Vol vol = new Vol(elets[0], elets[1], date,Integer.parseInt(elets[5]) );
@@ -83,8 +92,8 @@ public class GestionVols {
         do{
             String volChercher = JOptionPane.showInputDialog(null,
              "Entrez le numéro du vol a retirer");
-            int posTrouve = rechererVol(volChercher);
-            if(posTrouve ==-1){
+            int posTrouve = trouverIndex(volChercher);
+            if(!rechererVol(volChercher)){
                 msg= "le vol numéro "+ volChercher + " n'existe pas";
             }else{
                 String confirmation = JOptionPane.showInputDialog(null,
@@ -97,6 +106,8 @@ public class GestionVols {
                     --Vol.nombreVols;
                     listVols.remove(posTrouve);
                     msg ="le vol numéro  \n " + volChercher +" \n  a été retiré";
+                }else{
+                    msg ="";
                 }
             }
             if(msg != ""){
@@ -124,8 +135,8 @@ public class GestionVols {
             String strDate;
             String volChercher = JOptionPane.showInputDialog(null, 
             "Entrez le numéro du vol à ajouter :");
-            int posTrouve = rechererVol(volChercher);//verfier l'existance du numéro du vol
-            if(posTrouve !=-1){
+            //int posTrouve = trouverIndex(volChercher);
+            if(rechererVol(volChercher)){
                 msg= "le vol numéro "+ volChercher + " existe déjà";
             }else{
                 // boucle si la date n'est pas correcte
@@ -197,8 +208,8 @@ public class GestionVols {
         do{
             String volChercher = JOptionPane.showInputDialog(null, 
             "Entrez le numéro du vol dont on veut modifier la date de depart :");
-            int posTrouve = rechererVol(volChercher);//verfier l'existance du numéro du vol
-            if(posTrouve ==-1){
+            int posTrouve = trouverIndex(volChercher);
+            if(!rechererVol(volChercher)){
                 msg= "le vol numéro "+ volChercher + " n'existe pas";
             }else{
                 // boucle si la date n'est pas correcte
@@ -251,9 +262,9 @@ public class GestionVols {
         do{
             String volChercher = JOptionPane.showInputDialog(null,
              "Entrez le numéro du vol pour ajouter des réservations ");
-            int posTrouve = rechererVol(volChercher);
-            if(posTrouve ==-1){
-                msg= "le vol numéro "+ volChercher + " n'existe pas";
+             int posTrouve = trouverIndex(volChercher);
+             if(!rechererVol(volChercher)){
+                 msg= "le vol numéro "+ volChercher + " n'existe pas";
             }else{
                 int nbActuel = listVols.get(posTrouve).getNbTotalReservation();
                 int diffrenceReservation = MAX_PLACES - nbActuel;

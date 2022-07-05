@@ -42,7 +42,7 @@ public class Vol {
 
     public String toString() {
             return this.numeroVol + "\t" + paquetterString(this.destination,30) + "\t" + 
-            this.dateDepart.getJour() + " " + 
-            this.dateDepart.getMois() + " " + this.dateDepart.getAnnee() + "\t" + nbTotalReservation  + "\n" ;
+            this.dateDepart.getJour() + "/" + 
+            this.dateDepart.getMois() + "/" + this.dateDepart.getAnnee() + "\t" + nbTotalReservation  + "\n" ;
     }
 }
