@@ -36,7 +36,7 @@ public class GestionVols {
     // Deux methode d'affichage
     public static void afficherEntete(){
         sortie = new JTextArea();
-        sortie.setColumns(70);
+        sortie.setColumns(50);
         sortie.setLineWrap(true);
         sortie.setWrapStyleWord(true);
     
@@ -214,7 +214,7 @@ public class GestionVols {
             }else{
                 // boucle si la date n'est pas correcte
                 do{
-                    String strMg;
+                    String strMg="";
                     strDate = JOptionPane.showInputDialog(null, 
                     "le vol numéro "+ volChercher + " destination "+ listVols.get(posTrouve).getDestination()
                     + "\n date de depart le "+ listVols.get(posTrouve).getDateDepart() 
@@ -296,6 +296,9 @@ public class GestionVols {
     public static String verifierChaineDate(String strDate){
         boolean b = true;
         String msg="";
+        Date date;
+        String datemsg="";
+
 
         if(strDate.length()!=10 || (strDate.indexOf("/") != 2 && 
         strDate.substring(3).indexOf("/") != 2) ){
@@ -313,8 +316,6 @@ public class GestionVols {
             if(b == false){
                 msg += strDate +" doit etre avoir que des nombres\n";
             }else{
-                Date date;
-                String datemsg="";
                     //msg = "1" + strDate;
                 date = new Date(Integer.parseInt(strDate.substring(0,2)), 
                 Integer.parseInt(strDate.substring(3,5)), 
