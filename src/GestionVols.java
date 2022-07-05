@@ -214,6 +214,7 @@ public class GestionVols {
             }else{
                 // boucle si la date n'est pas correcte
                 do{
+                    String strMg;
                     strDate = JOptionPane.showInputDialog(null, 
                     "le vol numéro "+ volChercher + " destination "+ listVols.get(posTrouve).getDestination()
                     + "\n date de depart le "+ listVols.get(posTrouve).getDateDepart() 
@@ -222,7 +223,7 @@ public class GestionVols {
                         repDate=1;
                         msg="";
                     }else{
-                        String strMg = verifierChaineDate(strDate);// verifier la forme de chaine de caractere de la date entree
+                        strMg = verifierChaineDate(strDate);// verifier la forme de chaine de caractere de la date entree
                         if(strMg != ""){
                             msg = strMg;
                             JOptionPane.showMessageDialog(null,msg,"CORRECTION DE LA DATE", JOptionPane.PLAIN_MESSAGE); 
@@ -238,7 +239,7 @@ public class GestionVols {
                                         Integer.parseInt(eleDate[2]));
                 listVols.get(posTrouve).setDateDepart(date);
                 msg = "la novelle date de depart du vol numéro " + volChercher + " a été modifiée a "  + date;
-            }
+                }
         }
         if(msg !=""){        
         
