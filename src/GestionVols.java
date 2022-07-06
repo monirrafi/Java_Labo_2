@@ -321,9 +321,8 @@ public class GestionVols {
                 date = new Date(Integer.parseInt(strDate.substring(0,2)), 
                 Integer.parseInt(strDate.substring(3,5)), 
                 Integer.parseInt(strDate.substring(6,10)));
-               // datemsg=date.getMsg();
                 date.compareNow();
-                datemsg=date.getMsg();
+                datemsg=Date.msg;
                 if(datemsg != ""){
                     msg += datemsg;
                 }
